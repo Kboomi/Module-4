@@ -1,45 +1,54 @@
-
-# Exp.No:4C-EXCEPTION HANDLING
+# Exp.No:4D-FILES - FREQUENCY OF CHARACTERS IN A FILE
 
 ---
 
 ### AIM  
-To create a Python program that prompts the user for a list of grades separated by commas, splits the string into individual grades, and uses exception handling to inform the user if the values they entered cannot be converted to integers.
+To write a Python program that reads a file and counts the frequency of each character in it.
 
 ---
 
 ### ALGORITHM
 
 1. Begin the program.  
-2. Read a string `input_str` from the user using `input()`.  
-3. Split the input string using commas (`,`) to create a list of grades.  
-4. Use a `try` block to attempt converting each item in the grades list to an integer and store the result in `l1`.  
-5. If the conversion is successful, print the list `l1` containing the integer values.  
-6. If an error occurs during conversion (for example, if the input is not a valid number), catch the exception and print an error message: `"The grades you entered were in an invalid format."` along with the original grades list.  
-7. Terminate the program.
+2. Define the function `create_file()` that accepts two arguments:  
+   - `file_path`: The path to the file.  
+   - `content`: The string content to be written into the file.  
+3. Open the file specified by `file_path` in write mode (`'w'`), and write the provided `content` into the file.  
+4. Close the file (this is automatically done when exiting the `with` block).  
+5. Define the function `character_frequency()` that accepts one argument:  
+   - `file_path`: The path to the file whose character frequency is to be calculated.  
+6. Open the file specified by `file_path` in read mode (`'r'`), and read its content into the variable `content`.  
+7. Initialize an empty dictionary (`d1`) to store the frequency of each character using `defaultdict(int)`.  
+8. Loop through each character in the `content`:  
+   - For each character `ch`, increment its corresponding frequency in the dictionary `d1`.  
+9. Return the dictionary `d1`, which contains the frequency of each character in the file.  
+10. Terminate the program.
 
 ---
 
 ### PROGRAM
 
 ```
-#Reg.No-212222060029
-#Name- BOOMIKA
+#Reg.No: 212222060029
+#Name: BOOMIKA
 
-user_input = input()
-grades_str = user_input.split(',')
-try:
-    grades = [int(g) for g in grades_str]
-    print(grades)
-except ValueError:
-    print("The grades you entered were in an invalid format.")
-    print(grades_str)
-
+from collections import defaultdict
+def create_file(file_path, content):
+    with open(file_path, 'w') as file:
+        file.write(content)
+def char_frequency(file_path):
+    char_count=defaultdict(int)
+    with open(file_path, 'r')as file:
+        content=file.read()
+        for char in content:
+           char_count[char]+=1
+    return char_count
 ```
 
+
 ### OUTPUT
-<img width="813" height="176" alt="image" src="https://github.com/user-attachments/assets/2afc7fdc-13d6-411e-9a53-b269224f7d8c" />
+<img width="815" height="258" alt="image" src="https://github.com/user-attachments/assets/8742ed92-0403-444e-be7d-f793403c16c5" />
 
 
 ### RESULT
-Thus, a Python program that prompts the user for a list of grades separated by commas, splits the string into individual grades, and uses exception handling to inform the user if the values they entered cannot be converted to integers are verified.
+Thus a Python program that reads a file and counts the frequency of each character in it are verified.
